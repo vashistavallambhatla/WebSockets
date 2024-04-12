@@ -81,10 +81,8 @@ wss.on("connection", async (ws, req) => {
         }
 
         if (data.type === "message") {
-            console.log("someone wants to send a message");
             const roomId = users[wsId].room;
             const message = data.payload.message;
-
             Object.keys(users).forEach((wsId) => {
                 if (users[wsId].room === roomId) {
                     users[wsId].ws.send(JSON.stringify({
